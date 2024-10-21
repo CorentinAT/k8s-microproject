@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+  name: k8s-microproject-ingress
+spec:
+  rules:
+  - host: "hello.com"
+    http:
+     paths:
+     - path: /
+       pathType: Prefix
+       backend:
+         service:
+           name: k8s-microproject-service
+           port: 
+             number: 80
+             
