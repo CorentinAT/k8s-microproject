@@ -16,5 +16,18 @@ spec:
        - name: k8s-microproject-containers
          image: corentinat/k8s-microproject:latest
          ports:
-         - containerPort: 3000   
-    
+         - containerPort: 3000
+         livenessProbe:
+           httpGet:
+             path: /
+             port: 3000
+           initialDelaySeconds: 5
+           periodSeconds: 10
+         volumeMounts:
+         - name: persistent-storage
+           mountPath: /persistent_logs
+      volumes:
+      - name: persistent-storage
+        hostPath:
+          path: /Users/corentin/Documents/Cours/BUT3/S5/Virtu/k8s-microproject/persistent_logs
+          type: DirectoryOrCreate

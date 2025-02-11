@@ -16,4 +16,7 @@ spec:
            name: k8s-microproject-service
            port: 
              number: 80
-             
+  tls:
+  - hosts:
+    - hello.com
+    secretName: my-tls-secret             
